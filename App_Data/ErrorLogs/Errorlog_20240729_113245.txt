@@ -1,0 +1,3 @@
+2024-07-29 11:32:16: Invalid date format at row 2: 30-07-2024
+2024-07-29 11:32:45: Invalid date format at row 3: 
+2024-07-29 11:32:45: Invalid date format at row 4: 

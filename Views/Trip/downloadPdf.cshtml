@@ -1,0 +1,220 @@
+﻿@model PraneshKing_Cabs.Models.Trip
+
+@{
+    ViewBag.Title = "Invoice";
+    Layout = null;
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<style>
+    @@page {
+        size: A4;
+        margin: 0;
+    }
+
+    body {
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f7f6;
+        color: #333;
+    }
+
+    .invoice-container {
+        width: 210mm;
+        min-height: 297mm;
+        padding: 20mm;
+        margin: 0 auto;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+
+    .invoice-header {
+        border-bottom: 2px solid #333;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .invoice-title {
+        font-size: 32px;
+        color: #333;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .invoice-details {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .invoice-details-col {
+        flex: 1;
+        padding-right: 20px;
+    }
+
+    .invoice-details-col h4 {
+        color: #000;
+        margin-bottom: 5px;
+    }
+
+    .trip-details {
+        margin-top: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .trip-details table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .trip-details th, .trip-details td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .trip-details th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .trip-details tr:last-child td {
+        border-bottom: none;
+    }
+
+    .total-amount {
+        margin-top: 20px;
+        text-align: right;
+        font-size: 24px;
+        color: #333;
+    }
+
+    .invoice-footer {
+        margin-top: 30px;
+        text-align: center;
+        color: #777;
+        font-size: 14px;
+    }
+
+    .qr-code {
+        position: absolute;
+        bottom: 80mm;
+        right: 20mm;
+        width: 100px;
+        height: 100px;
+        background-color: #f8f9fa;
+        padding: 10px;
+        border: 1px solid #e0e0e0;
+    }
+
+    .paid-stamp {
+        position: absolute;
+        top: 15%;
+        right: 10%;
+        transform: rotate(-20deg);
+        font-size: 4rem;
+        font-weight: bold;
+        color: rgba(242, 71, 71, 0.6);
+        border: 0.5rem double rgba(242, 71, 71, 0.6);
+        border-radius: 1rem;
+        padding: 1rem 2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5rem;
+        pointer-events: none;
+        z-index: 1000;
+        opacity: 0.8;
+        box-shadow: 0 0 0 0.5rem rgba(242, 71, 71, 0.1);
+        text-shadow: 3px 3px 0 rgba(242, 71, 71, 0.1);
+    }
+
+        .paid-stamp::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient( 45deg, rgba(242, 71, 71, 0.1), rgba(242, 71, 71, 0.1) 10px, transparent 10px, transparent 20px );
+            z-index: -1;
+            border-radius: 0.5rem;
+        }
+
+</style>
+
+<body>
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <h1 class="invoice-title">Invoice</h1>
+        </div>
+        <div class="invoice-details">
+            <div class="invoice-details-col">
+                <h4>Invoice To:</h4>
+                <p>@Model.CustomerName</p>
+                <p>Customer ID: @Model.TripID</p>
+                <p>Email: @Model.CustomerName@@gmail.com</p>
+                <p>Phone: +91 9876543210</p>
+            </div>
+          
+        </div>
+
+        <div class="trip-details">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Driver Name</td>
+                        <td>@Model.DriverName</td>
+                    </tr>
+                    <tr>
+                        <td>Vehicle Number</td>
+                        <td>@Model.VehicleNumber</td>
+                    </tr>
+                    <tr>
+                        <td>Pickup Date</td>
+                        <td>@Model.PickupDate.ToString("MMMM dd, yyyy")</td>
+                    </tr>
+                    <tr>
+                        <td>Pickup Location</td>
+                        <td>@Model.PickupLocation</td>
+                    </tr>
+                    <tr>
+                        <td>Drop Location</td>
+                        <td>@Model.DropLocation</td>
+                    </tr>
+                    <tr>
+                        <td>Distance Traveled</td>
+                        <td>@Model.Kilometer km</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="total-amount">
+            <strong>Total Amount: ₹@Model.Amount</strong>
+        </div>
+
+        <div class="paid-stamp">Paid</div>
+
+        <div class="invoice-footer">
+            <p>Thank you for choosing Pranesh Cabs. We appreciate your business!</p>
+            <p>For any queries, please contact us at support@praneshcabs.com or call +91 9003243440</p>
+        </div>
+
+        <div class="qr-code">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?data=Invoice123&size=100x100" alt="Invoice QR Code" style="width: 100%; height: 100%;">
+        </div>
+    </div>
+</body>

@@ -1,0 +1,1041 @@
+﻿@model IEnumerable<PraneshKing_Cabs.Models.Trip>
+@{
+    ViewBag.Title = "List";
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<style>
+    body {
+        background-image: url(https://www.zmo.ai/wp-content/uploads/2023/09/powerpoint-slide-with-white-background-SB02298-min-scaled.jpg);
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-family: 'Arial', sans-serif;
+        color: #333;
+    }
+
+    .pagesize {
+        border-radius: 50px;
+        width: 100%;
+        padding: 8px 16px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .file-upload-container {
+        background: linear-gradient(145deg, #ffffff, #f0f0f0);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 100%;
+        margin: 20px 0;
+    }
+
+    .file-upload-input {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
+
+    .file-upload-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+        .file-upload-label:hover {
+            background-color: #0056b3;
+        }
+
+        .file-upload-label i {
+            margin-right: 8px;
+        }
+
+    .import-button, .cancel-button, .preview-button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 14px;
+    }
+
+        .import-button:hover, .preview-button:hover {
+            background-color: #218838;
+        }
+        .preview-button{
+            background-color: deepskyblue;
+        }
+
+        .cancel-button {
+            background-color: #dc3545; /* Bootstrap danger color */
+        }
+
+        .cancel-button:hover {
+            background-color: #c82333;
+        }
+
+        .import-button i, .cancel-button i, .preview-button i {
+            margin-right: 8px;
+        }
+
+    .file-upload-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    @@media (min-width: 768px) {
+        .file-upload-form {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .file-upload-label {
+            margin-right: 10px;
+            margin-bottom: 0;
+            flex: 1;
+        }
+
+        .import-button, .cancel-button, .preview-button {
+            width: auto;
+            margin-left: 10px;
+        }
+    }
+
+    /* Formal and Professional Styling for Excel Preview Modal */
+    .modal-dialog.modal-xl {
+        max-width: 95vw;
+        width: 95vw;
+        height: 90vh;
+        margin: 5vh auto;
+    }
+
+    .modal-content {
+        display: flex;
+        flex-direction: column;
+        background-color: #f8f9fa;
+        border-radius: 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-header {
+        background-color: #343a40;
+        color: white;
+        border-bottom: none;
+        padding: 15px 30px;
+        flex-shrink: 0;
+    }
+
+    .modal-title {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .close {
+        color: white;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+    }
+
+        .close:hover, .close:focus {
+            color: white;
+            opacity: 1;
+        }
+
+    .modal-body {
+        overflow: hidden;
+        padding: 15px 30px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #searchInput {
+        margin-bottom: 15px;
+        border-radius: 0;
+        border: 1px solid #ced4da;
+        padding: 8px 15px;
+    }
+
+    .excel-preview-container {
+        flex-grow: 1;
+        overflow: auto;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .table-bordered {
+        border: 1px solid #dee2e6;
+    }
+
+    .table thead th {
+        position: sticky;
+        top: 0;
+        background-color: #f1f3f5;
+        border-bottom: 2px solid #dee2e6;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+
+    .table tbody tr td {
+        padding: 8px;
+        vertical-align: middle;
+    }
+
+    .modal-footer {
+        border-top: 1px solid #dee2e6;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    .pagination-container {
+        margin: 0;
+    }
+
+        .pagination-container .page-item .page-link {
+            color: #343a40;
+            border-radius: 0;
+            padding: 5px 10px;
+        }
+
+        .pagination-container .page-item.active .page-link {
+            background-color: #343a40;
+            border-color: #343a40;
+            color: white;
+        }
+
+    .modal-footer .btn {
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 14px;
+        padding: 8px 15px;
+        border-radius: 0;
+    }
+
+    #excelPreviewModal .btn-default {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+        #excelPreviewModal .btn-default:hover {
+            background-color: #5a6268;
+        }
+
+    .pdf-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        padding: 5px 10px;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .export-button-container {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .export-button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .export-button:hover {
+            background-color: #218838;
+        }
+
+    .hidden {
+        display: none;
+    }
+
+    .status-icon {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        font-family: 'Arial', sans-serif;
+    }
+
+        .status-icon i {
+            margin-right: 5px;
+        }
+
+    .pending {
+        color: #ff0000; /* Red color for pending */
+    }
+
+    .completed {
+        color: #28a745; /* Green color for completed */
+    }
+
+    .no-records-found {
+        padding: 20px 0;
+    }
+
+    .empty-state {
+        text-align: center;
+        color: #6c757d;
+        animation: fadeIn 0.5s ease-out;
+    }
+
+    .empty-state-icon {
+        font-size: 32px;
+        color: #007bff;
+        margin-bottom: 10px;
+        animation: pulse 2s infinite;
+    }
+
+    .empty-state h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .empty-state p {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @@keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.5);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+</style>
+
+<div class="container container3">
+    <h2 class="my-4 bookdetail">Trip Details</h2>
+
+    <div class="container">
+        <div class="file-upload-container">
+            @using (Html.BeginForm("ImportFromExcel", "Trip", FormMethod.Post, new { enctype = "multipart/form-data", @class = "file-upload-form" }))
+            {
+                <input type="file" name="file" class="file-upload-input" id="file" aria-describedby="fileInput" />
+                <label for="file" class="file-upload-label">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span id="file-name">Choose File</span>
+                </label>
+                <button type="submit" class="import-button" id="importButton">
+                    <i class="fas fa-file-import"></i> Import
+                </button>
+                <button type="button" class="preview-button hidden" id="previewButton" data-toggle="modal" data-target="#excelPreviewModal">
+                    <i class="glyphicon glyphicon-eye-open"></i> Preview Excel Data
+                </button>
+                <button type="button" class="cancel-button hidden" id="cancelButton">
+                    <i class="fas fa-times"></i> Cancel
+                </button>}
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="excelPreviewModal" tabindex="-1" role="dialog" aria-labelledby="excelPreviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="excelPreviewModalLabel">Excel Data Preview</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+                    <div class="excel-preview-container">
+                        <table class="table table-bordered" id="excelPreviewTable">
+                            <thead id="excelPreviewHeader"></thead>
+                            <tbody id="excelPreviewBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div id="pagination" class="pagination-container"></div>
+                    @using (Html.BeginForm("ImportFromExcel", "Trip", FormMethod.Post, new { enctype = "multipart/form-data", @class = "file-upload-form" }))
+                    {
+                        <input type="file" name="file" class="file-upload-input" id="file" aria-describedby="fileInput" />
+                        <label for="file" class="file-upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span id="file-name">Choose File</span>
+                        </label>
+                        <button type="submit" class="import-button" id="importButton">
+                            <i class="fas fa-file-import"></i> Import
+                        </button>
+                     }
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="panel-body">
+        <a href="/Trip/Add/" class="btn btn-success mb-4" id="create" style="margin-left:95%; border-radius:40px;">
+            <i class="fas fa-plus"></i> Add
+        </a>
+
+
+
+        <div class="row searchhead">
+            <div class="col-md-3 d-flex align-items-center">
+                <label for="Search" class="mr-2">Search by Customer Name</label>
+                <input type="text" id="searchName" class="form-control" style="border-radius: 50px; width: 100%;" placeholder="Search by Name" value="@ViewBag.SearchName" autocomplete="off">
+            </div>
+            <div class="col-md-3  d-flex align-items-center search">
+                <label for="CategoryName" class="mr-2 required">Category selection</label>
+                <select id="CategoryName" name="CategoryName" class="form-control custom-select" style="border-radius: 50px; width: 100%;" placeholder="Select Category Name" autocomplete="off">
+                    <option value="">Select car</option>
+                    @foreach (var categoryname in ViewBag.CategorySelectList)
+                    {
+                        <option value="@categoryname.Value" @(categoryname.Value == ViewBag.SelectedCar ? "selected" : "")>@categoryname.Text</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-3 d-flex align-items-center">
+                <label for="SortBy" class="mr-2">Sort By</label>
+                <select id="SortBy" name="SortBy" class="form-control custom-select" style="border-radius: 50px; width: 100%;">
+                    <option value="">Select Sorting Option</option>
+                    <option value="CustomerName" @(ViewBag.SortBy == "CustomerName" ? "selected" : "")>Customer Name</option>
+                    <option value="TripStatus" @(ViewBag.SortBy == "TripStatus" ? "selected" : "")>Trip Status</option>
+                </select>
+            </div>
+
+            <div class="col-md-2 d-flex align-items-center justify-content-between" style="margin-top:25px;">
+                <button class="btn btn-default" id="searchButton" onclick="search()" style="border-radius: 50px; margin-right: 10px;">
+                    <i class="fas fa-search" style="color: deepskyblue"></i>
+                </button>
+                <button class="btn btn-default" id="resetButton" onclick="reset()" style="border-radius: 50px;">
+                    <i class="fas fa-redo"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 d-flex align-items-center">
+                <label for="PageSize" class="mr-2">Records per Page</label>
+                <select id="PageSize" name="PageSize" class="form-control custom-select pagesize" onchange="updatePageSize()">
+                    <option value="5" @(ViewBag.PageSize == 5 ? "selected" : "")>5</option>
+                    <option value="10" @(ViewBag.PageSize == 10 ? "selected" : "")>10</option>
+                    <option value="15" @(ViewBag.PageSize == 15 ? "selected" : "")>15</option>
+                </select>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table" id="example">
+                <thead class="thead-dark">
+                    <tr>
+                        <th><input type="checkbox" id="selectAll" /></th>
+                        <th>Customer Name</th>
+                        <th>Driver Name</th>
+                        <th>Vehicle Number</th>
+                        <th style="width:5px;">Category Name</th>
+                        <th>Pickup Date</th>
+                        <th style="width:5px;">Pickup Location</th>
+                        <th>Drop Location</th>
+                        <th style="width:5px;">Kilometer</th>
+                        <th style="width:5px;">Amount</th>
+                        <th style="width:5px;">Trip Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="mytable">
+                    @if (Model.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="12" class="no-records-found">
+                                <div class="empty-state">
+                                    <div class="empty-state-icon">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <h3>No Records Found</h3>
+                                    <p>We couldn't find any records matching your criteria.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var i in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="selectedTrips" value="@i.TripID" class="tripCheckbox" />
+                                </td>
+                                <td>@i.CustomerName</td>
+                                <td>@i.DriverName</td>
+                                <td>@i.VehicleNumber</td>
+                                <td>@i.CategoryName</td>
+                                <td>@i.PickupDate.ToString("MM/dd/yyyy")</td>
+                                <td>@i.PickupLocation</td>
+                                <td>@i.DropLocation</td>
+                                <td>@i.Kilometer</td>
+                                <td>@i.Amount</td>
+                                <td>
+                                    @if (i.Amount == 0)
+                                    {
+                                        <span class="status-icon pending">
+                                            <i class="fas fa-exclamation-circle"></i> Pending
+                                        </span> }
+                                    else
+                                    {
+                                        <span class="status-icon completed">
+                                            <i class="fas fa-check-circle"></i> Completed
+                                        </span>}
+                                </td>
+                                <td>
+                                    @if (i.Amount == 0)
+                                    {
+                                        <button class="btn btn-default btn-sm edit-button" style="border-color:gold; color:gold;" onclick="Edit(@i.TripID)">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </button>
+                                        <button class="btn btn-default btn-sm delete-btn" style="border-color:red; color:red;" onclick="deleteEmployee(@i.TripID)">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </button> }
+                                    else
+                                    {
+                                        <button class="btn btn-default btn-sm pdf-btn" onclick="downloadPdf(@i.TripID)">
+                                            <i class="fa fa-download" aria-hidden="true"></i>
+                                        </button>}
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @using (Html.BeginForm("ExportToExcel", "Trip", FormMethod.Get))
+    {
+        <input type="hidden" name="searchName" id="exportSearchName" />
+        <input type="hidden" name="CategoryName" id="exportCategoryName" />
+        <input type="hidden" name="selectedTripIds" id="selectedTripIds" />
+
+        <div class="btn-group" role="group" aria-label="Export and Reset">
+            <button type="submit" class="btn btn-success" id="exportButton" onclick="copySearchName()">
+                Export to Excel
+            </button>
+
+            <button type="button" class="btn btn-warning" id="resetSelectionButton" style="margin-left: 10px;">
+                Reset Selection
+            </button>
+        </div>
+    }
+
+
+    <div class="text-right" style="margin-top: -30px;">
+        @if (ViewBag.TotalPages > 1)
+        {
+            int currentPage = ViewBag.CurrentPage;
+            int totalPages = ViewBag.TotalPages;
+
+            <ul class="pagination">
+                @if (currentPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("TripList", new { searchName = ViewBag.SearchName, categoryName = ViewBag.SelectedCar, sortBy = ViewBag.SortBy, page = 1, pageSize = ViewBag.PageSize })">First</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("TripList", new { searchName = ViewBag.SearchName, categoryName = ViewBag.SelectedCar, sortBy = ViewBag.SortBy, page = currentPage - 1, pageSize = ViewBag.PageSize })">Previous</a>
+                    </li>
+                }
+                @for (int i = 1; i <= totalPages; i++)
+                {
+                    <li class="page-item @(i == currentPage ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("TripList", new { searchName = ViewBag.SearchName, categoryName = ViewBag.SelectedCar, sortBy = ViewBag.SortBy, page = i, pageSize = ViewBag.PageSize })">@i</a>
+                    </li>
+                }
+                @if (currentPage < totalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("TripList", new { searchName = ViewBag.SearchName, categoryName = ViewBag.SelectedCar, sortBy = ViewBag.SortBy, page = currentPage + 1, pageSize = ViewBag.PageSize })">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("TripList", new { searchName = ViewBag.SearchName, categoryName = ViewBag.SelectedCar, sortBy = ViewBag.SortBy, page = totalPages, pageSize = ViewBag.PageSize })">Last</a>
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#file').change(function (e) {
+            var file = e.target.files[0];
+            var formData = new FormData();
+            formData.append('file', file);
+
+            $.ajax({
+                url: '/Trip/PreviewExcel',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    // Clear previous preview
+                    $('#excelPreviewHeader').empty();
+                    $('#excelPreviewBody').empty();
+                    $('#pagination').empty(); // Clear previous pagination
+
+                    // Append new header
+                    var headerRow = '<tr>';
+                    data.headers.forEach(function (header) {
+                        headerRow += '<th>' + header + '</th>';
+                    });
+                    headerRow += '<th>Error</th>'; // Add error column
+                    headerRow += '</tr>';
+                    $('#excelPreviewHeader').append(headerRow);
+
+                    // Append new body
+                    var rows = '';
+                    data.rows.forEach(function (row, index) {
+                        var bodyRow = '<tr>';
+                        row.forEach(function (cell, colIndex) {
+                            bodyRow += '<td contenteditable="true" data-row="' + index + '" data-col="' + colIndex + '">' + cell + '</td>';
+                        });
+                        bodyRow += '<td class="error-cell">' + data.errors[index] + '</td>';
+                        bodyRow += '</tr>';
+                        rows += bodyRow;
+                    });
+                    $('#excelPreviewBody').append(rows);
+
+                    // Highlight error rows
+                    $('#excelPreviewBody .error-cell').each(function () {
+                        if ($(this).text()) {
+                            $(this).closest('tr').addClass('error-row');
+                        }
+                    });
+
+                    // Initialize table with pagination and search
+                    initializeTable();
+                    $('#importButton').removeClass('hidden'); // Show the Import button
+                },
+                error: function (xhr, status, error) {
+                    alert('Error: ' + error);
+                }
+            });
+        });
+
+        function initializeTable() {
+            var rowsPerPage = 5;
+            var currentPage = 1;
+            var rows = $('#excelPreviewBody tr').toArray();
+
+            function renderTable(page) {
+                var start = (page - 1) * rowsPerPage;
+                var end = start + rowsPerPage;
+
+                $('#excelPreviewBody').empty();
+                $(rows.slice(start, end)).appendTo('#excelPreviewBody');
+
+                renderPagination();
+            }
+
+            function renderPagination() {
+                var totalPages = Math.ceil(rows.length / rowsPerPage);
+                var paginationHtml = '';
+
+                for (var i = 1; i <= totalPages; i++) {
+                    paginationHtml += '<li class="page-item ' + (i === currentPage ? 'active' : '') + '">';
+                    paginationHtml += '<a class="page-link" href="#">' + i + '</a>';
+                    paginationHtml += '</li>';
+                }
+
+                $('#pagination').html('<ul class="pagination">' + paginationHtml + '</ul>');
+
+                $('#pagination .page-link').click(function (e) {
+                    e.preventDefault();
+                    currentPage = parseInt($(this).text());
+                    renderTable(currentPage);
+                });
+            }
+
+            $('#searchInput').on('input', function () {
+                var searchTerm = $(this).val().toLowerCase();
+                $('#excelPreviewBody tr').each(function () {
+                    var rowText = $(this).text().toLowerCase();
+                    $(this).toggle(rowText.indexOf(searchTerm) > -1);
+                });
+                renderTable(1); // Reset to first page
+            });
+
+            renderTable(currentPage);
+        }
+
+        // Handle import button click
+        $('#importButton').click(function () {
+            var rowsData = [];
+            $('#excelPreviewBody tr').each(function () {
+                var rowData = [];
+                $(this).find('td').each(function () {
+                    rowData.push($(this).text());
+                });
+                rowsData.push(rowData);
+            });
+
+            $.ajax({
+                url: '/Trip/ImportFromPreview',
+                type: 'POST',
+                data: JSON.stringify({ rows: rowsData }),
+                contentType: 'application/json',
+                success: function (response) {
+                    if (response.success) {
+                        alert('Import successful!');
+                        $('#excelPreviewModal').modal('hide');
+                        $('#file').val(''); // Clear the file input
+                        $('#file-name').text('Choose File');
+                        $('#importButton').addClass('hidden'); // Hide the Import button
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert('Error: ' + error);
+                }
+            });
+        });
+
+        // Handle cancel button click
+        $('#cancelButton').click(function () {
+            $('#file').val(''); // Clear the file input
+            $('#file-name').text('Choose File');
+            $(this).addClass('hidden'); // Hide the cancel button
+            $('#previewButton').addClass('hidden'); // Hide the preview button
+        });
+    });
+
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const fileInput = document.getElementById('file');
+        const fileNameSpan = document.getElementById('file-name');
+        const cancelButton = document.getElementById('cancelButton');
+        const previewButton = document.getElementById('previewButton');
+
+        fileInput.addEventListener('change', function (e) {
+            if (this.files && this.files[0]) {
+                fileNameSpan.textContent = this.files[0].name;
+                cancelButton.classList.remove('hidden');
+                previewButton.classList.remove('hidden'); // Show the preview button
+            }
+        });
+
+        cancelButton.addEventListener('click', function () {
+            fileInput.value = ''; // Clear the file input
+            fileNameSpan.textContent = 'Choose File';
+            this.classList.add('hidden');
+            previewButton.classList.add('hidden'); // Hide the preview button
+        });
+    });
+
+    function updatePageSize() {
+        var pageSize = document.getElementById('PageSize').value;
+        var url = new URL(window.location.href);
+        url.searchParams.set('pageSize', pageSize);
+        window.location.href = url.toString(); // Reload the page with the new page size
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelector('form').addEventListener('submit', function (event) {
+            debugger;
+        event.preventDefault(); // Prevent the default form submission
+
+        var formData = new FormData(this);
+
+        fetch('@Url.Action("ImportFromExcel", "Trip")', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                if (data.recordsInserted === 0) {
+                    Swal.fire({
+                        title: 'Error',
+                        text: data.message,
+                        icon: 'error'
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Success',
+                        text: `${data.message}`,
+                        icon: 'success'
+                    }).then(() => {
+                        if (data.redirect) {
+                            window.location.href = '@Url.Action("TripList", "Trip")'; // Redirect if needed
+                        }
+                    });
+                }
+            } else {
+                Swal.fire({
+                    title: 'Error',
+                    text: data.message,
+                    icon: 'error'
+                });
+            }
+        })
+        .catch(error => {
+            Swal.fire({
+                title: 'Error',
+                text: 'An unexpected error occurred.',
+                icon: 'error'
+            });
+        });
+    });
+});
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Initialize selectedTripIds from localStorage
+        var selectedTripIds = localStorage.getItem("selectedTripIds");
+        if (selectedTripIds) {
+            selectedTripIds = selectedTripIds.split(',');
+        } else {
+            selectedTripIds = [];
+        }
+
+        // Mark checkboxes based on selectedTripIds
+        document.querySelectorAll('.tripCheckbox').forEach(function (checkbox) {
+            if (selectedTripIds.includes(checkbox.value)) {
+                checkbox.checked = true;
+            }
+        });
+
+        // Add event listener to checkboxes
+        document.querySelectorAll('.tripCheckbox').forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                var tripID = checkbox.value;
+                if (checkbox.checked) {
+                    if (!selectedTripIds.includes(tripID)) {
+                        selectedTripIds.push(tripID);
+                    }
+                } else {
+                    selectedTripIds = selectedTripIds.filter(id => id !== tripID);
+                }
+                localStorage.setItem('selectedTripIds', selectedTripIds.join(','));
+            });
+        });
+
+        // Select all checkboxes when the "Select All" checkbox is checked
+        document.getElementById('selectAll').addEventListener('change', function () {
+            var isChecked = this.checked;
+            document.querySelectorAll('.tripCheckbox').forEach(function (checkbox) {
+                checkbox.checked = isChecked;
+                var tripID = checkbox.value;
+                if (isChecked) {
+                    if (!selectedTripIds.includes(tripID)) {
+                        selectedTripIds.push(tripID);
+                    }
+                } else {
+                    selectedTripIds = [];
+                }
+            });
+            localStorage.setItem('selectedTripIds', selectedTripIds.join(','));
+        });
+
+        // Uncheck the "Select All" checkbox when any individual checkbox is unchecked
+        document.querySelectorAll('.tripCheckbox').forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                if (!checkbox.checked) {
+                    document.getElementById('selectAll').checked = false;
+                }
+            });
+        });
+
+        // Add event listener to reset button
+        document.getElementById('resetSelectionButton').addEventListener('click', function () {
+            // Clear selectedTripIds and update checkboxes
+            selectedTripIds = [];
+            localStorage.removeItem('selectedTripIds');
+            document.getElementById('selectAll').checked = false;
+            document.querySelectorAll('.tripCheckbox').forEach(function (checkbox) {
+                checkbox.checked = false;
+            });
+        });
+    });
+
+    function copySearchName() {
+        var searchName = document.getElementById("searchName").value;
+        var categoryName = document.getElementById("CategoryName").value;
+        var selectedTrips = localStorage.getItem("selectedTripIds");
+        document.getElementById("exportSearchName").value = searchName;
+        document.getElementById("exportCategoryName").value = categoryName;
+        document.getElementById("selectedTripIds").value = selectedTrips;
+        localStorage.removeItem("selectedTripIds");
+    }
+
+    function check() {
+        Swal.fire({
+            title: 'Trip Completed Successfully',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    }
+
+    function search() {
+        var searchName = $('#searchName').val();
+        var CategoryName = $('#CategoryName').val();
+        var SortBy = $('#SortBy').val();
+        window.location.href = "/Trip/TripList?searchName=" + searchName + "&categoryName=" + CategoryName + "&sortBy=" + SortBy;
+
+    }
+
+    function reset() {
+        $('#searchName').val('');
+        $('#CategoryName').val('');
+        window.location.href = "/Trip/TripList";
+    }
+
+    function Edit(id) {
+        localStorage.setItem('id', id);
+        window.location.href = "/Trip/Update/";
+
+    }
+
+    function downloadPdf(id) {
+        localStorage.setItem('id', id);
+        window.location.href = "/Trip/Download/" + id;
+    }
+
+
+    function deleteEmployee(TripId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#337ab7',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+            customClass: {
+                popup: 'swal2-popup',
+                title: 'swal2-title',
+                confirmButton: 'swal2-button'
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "@Url.Action("DeleteConfirmed", "Trip")",
+                    type: "POST",
+                    data: { id: TripId },
+                    success: function (result) {
+                    console.log("Success response:", result); // Log the success response
+                    if (result.success) {
+                    Swal.fire({
+                    title: 'Deleted!',
+                    text: 'The Trip has been deleted.',
+                    icon: 'success',
+                    confirmButtonColor: '#337ab7',
+                    customClass: {
+                    popup: 'swal2-popup',
+                    title: 'swal2-title',
+                    confirmButton: 'swal2-button'
+                    }
+                    }).then(() => {
+                    window.location.reload();
+                    });
+                    } else {
+                    Swal.fire({
+                    title: 'Error!',
+                    text: result.message,
+                    icon: 'error',
+                    confirmButtonColor: '#337ab7',
+                    customClass: {
+                    popup: 'swal2-popup',
+                    title: 'swal2-title',
+                    confirmButton: 'swal2-button'
+                    }
+                    });
+                    }
+                    },
+
+                    error: function (error) {
+                    console.error("Error response:", error); // Log the error response
+                    Swal.fire({
+                    title: 'Error!',
+                    text: 'Error deleting employee: ' + error.message,
+                    icon: 'error',
+                    confirmButtonColor: '#337ab7',
+                    customClass: {
+                    popup: 'swal2-popup',
+                    title: 'swal2-title',
+                    confirmButton: 'swal2-button'
+                    }
+                    });
+                    }
+                    });
+                    }
+                    });
+                    }
+
+</script>

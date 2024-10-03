@@ -1,0 +1,10 @@
+2024-07-30 11:04:31: Invalid kilometres at row 2: 14. Only 0 is allowed.
+2024-07-30 11:04:31: Invalid kilometres at row 3: . Only 0 is allowed.
+2024-07-30 11:23:40: Duplicate trip found at row 2: Naveen, Amit Patel, DL08GH2345,22-08-2024 00:00:00, Luxury, chennai, pondicherry, 0, 0
+2024-07-30 11:23:40: Duplicate trip found at row 3: Rohan, Praneshdharshan, TN13Y6798,19-09-2024 00:00:00, Luxury, chennai, madurai, 0, 0
+2024-07-30 15:43:23: Invalid date format at row 2: 7-31-24 11:16 format should be like dd-MM-yyyy
+2024-07-30 15:43:23: Duplicate trip found at row 3: Naveen, Amit Patel, DL08GH2345,22-08-2024 00:00:00, Luxury, chennai, pondicherry, 0, 0
+2024-07-30 15:44:08: Invalid date format at row 2: 7-31-24 11:16 format should be like dd-MM-yyyy
+2024-07-30 15:44:08: Duplicate trip found at row 3: Naveen, Amit Patel, DL08GH2345,22-08-2024 00:00:00, Luxury, chennai, pondicherry, 0, 0
+2024-07-30 15:45:20: Invalid pickup date at row 2: 01-01-2024. Date should be greater than or equal to today's date and within the current year.
+2024-07-30 15:46:12: Invalid kilometres at row 2: 5. Only 0 is allowed.

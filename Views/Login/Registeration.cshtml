@@ -1,0 +1,354 @@
+﻿@{ 
+    ViewBag.Title = "Registration Page";
+}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .error-message {
+        color: red;
+        font-size: 14px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .register-container {
+        margin-top: 25px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+    }
+
+    .register-image {
+        background: url('https://st4.depositphotos.com/3275449/41883/v/450/depositphotos_418833908-stock-illustration-orange-car-smartphone-route-points.jpg') no-repeat center center;
+        background-size: cover;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        width: 50%; /* Image container takes up half the width */
+    }
+
+    input, select, textarea {
+        max-width: 100%;
+    }
+
+    .register-form {
+        width: 50%; /* Form container takes up half the width */
+        padding: 40px;
+    }
+
+        .register-form h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        height: 45px;
+        font-size: 16px;
+    }
+
+    .btn-register {
+        width: 100%;
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+    }
+
+        .btn-register:hover {
+            background-color: #0056b3;
+        }
+
+    .show-password {
+        float: right;
+        margin-top: -30px;
+        margin-right: 10px;
+        cursor: pointer;
+        color: #007bff;
+    }
+
+    .login-link {
+        margin-top: 20px;
+    }
+
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            .login-link a:hover {
+                text-decoration: underline;
+            }
+
+    @@media (max-width: 767px) {
+        .register-container {
+            flex-direction: column;
+        }
+
+        .register-image {
+            border-radius: 10px 10px 0 0;
+            height: 200px;
+            width: 100%; /* Image container takes full width on small screens */
+        }
+
+        .register-form {
+            padding: 20px;
+            width: 100%; /* Form container takes full width on small screens */
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="row register-container">
+        <div class="register-image"></div>
+        <div class="register-form">
+            <h2>Register</h2>
+            <form>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                    <div class="error-message" id="usernameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                    <span class="show-password" onclick="togglePassword('password')">Show</span>
+                    <div id="password-strength" class="password-strength"></div>
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="reenter-password">Re-enter Password</label>
+                    <input type="password" class="form-control" id="reenter-password" name="reenter-password" required>
+                    <span class="show-password" onclick="togglePassword('reenter-password')">Show</span>
+                    <div class="error-message" id="reenterPasswordError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select class="form-control" id="role" name="role">
+                        <option value="">Select Option</option>
+                        <option value="1">Admin</option>
+                        <option value="2">User</option>
+                    </select>
+                    <div class="error-message" id="roleError"></div>
+                </div>
+                <div class="form-group" id="security-code-container" style="display: none;">
+                    <label for="security-code">Security Code</label>
+                    <input type="text" class="form-control" id="security-code" name="security-code" autocomplete="off">
+                    <div class="error-message" id="securityCodeError"></div>
+                </div>
+                <button type="submit" class="btn btn-register" onclick="return Register(event)" id="RegisterButton">Register</button>
+                <div class="login-link" style="padding-left: 30%;">
+                    <p>Already have an account? <a href="/login">Login here</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    function togglePassword(fieldId) {
+        var field = document.getElementById(fieldId);
+        if (field.type === "password") {
+            field.type = "text";
+            event.target.textContent = 'Hide'; // Change text to 'Hide'
+        } else {
+            field.type = "password";
+            event.target.textContent = 'Show'; // Change text to 'Show'
+        }
+    }
+
+
+
+    $('#role').on('change', function () {
+        $('#roleError').text('');
+        if ($(this).val() === '1') {
+            $('#security-code-container').show();
+        } else {
+            $('#security-code-container').hide();
+            $('#security-code').val('');
+            $('#securityCodeError').text('');
+        }
+    });
+    $(document).ready(function () {
+        $('#username').on('keypress', function (e) {
+            var charCode = e.which ? e.which : e.keyCode;
+            var username = $(this).val();
+
+            // Allow letters and dot, restrict spaces, and limit to 30 characters
+            if ((charCode >= 65 && charCode <= 90) || // A-Z
+                (charCode >= 97 && charCode <= 122) || // a-z
+                charCode == 46 // dot (.)
+            ) {
+                if (username.length >= 30) {
+                    return false; // Restrict length to 30 characters
+                }
+                return true;
+            }
+            return false; // Disallow any other characters, including spaces
+        });
+
+        $('#username').on('blur', function () {
+            var username = $(this).val();
+            if (username.length > 0) {
+                // Capitalize the first letter
+                username = username.charAt(0).toUpperCase() + username.slice(1);
+                $(this).val(username);
+            }
+        });
+
+        $('#username').on('input', function () {
+            $('#usernameError').text('');
+        });
+
+        $('#password').on('input', function () {
+            $('#passwordError').text('');
+        });
+
+        $('#reenter-password').on('input', function () {
+            $('#reenterPasswordError').text('');
+        });
+
+        $('#role').on('change', function () {
+            $('#roleError').text('');
+        });
+    });
+
+    function checkUsernameExists(username) {
+        return $.ajax({
+            url: "/Login/CheckUsernameExists/",
+            type: "POST",
+            data: { UserName: username },
+            dataType: "json"
+        });
+    }
+
+    function Register(event) {
+        event.preventDefault();
+        $('.error-message').text('');
+        var username = $('#username').val();
+        var password = $('#password').val();
+        var confirmPassword = $('#reenter-password').val();
+        var role = $('#role').val();
+        var securityCode = $('#security-code').val(); // Get the security code value
+
+        var isValid = true;
+
+        // Validate username
+        if (username === "") {
+            $('#usernameError').text('Username is required.');
+            isValid = false;
+        }
+
+        if (password === "") {
+            $('#passwordError').text('Password is required.');
+            isValid = false;
+        }
+
+        if (confirmPassword === "") {
+            $('#reenterPasswordError').text('Please confirm your password.');
+            isValid = false;
+        }
+
+        if (password !== confirmPassword) {
+            $('#reenterPasswordError').text('Passwords do not match.');
+            isValid = false;
+        }
+
+        if (role === "") {
+            $('#roleError').text('Please select a role.');
+            isValid = false;
+        }
+
+        if (role === '1' && securityCode === "") {
+            $('#securityCodeError').text('Security code is required.');
+            isValid = false;
+        }
+
+        // Check if username already exists
+        checkUsernameExists(username).done(function (data) {
+            if (data.exists) {
+                $('#usernameError').text('Username already exists. Please choose a different username.');
+                isValid = false;
+            }
+
+            if (isValid) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Do you want to register new User?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, add it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "/Login/InsertUserDetails/",
+                            type: "POST",
+                            data: {
+                                UserName: username,
+                                Password: password,
+                                RoleID: role,
+                                SecurityCode: securityCode // Pass the security code
+                            },
+                            success: function (data) {
+                                if (data.success) {
+                                    Swal.fire({
+                                        title: 'Success!',
+                                        text: 'User added successfully',
+                                        icon: 'success',
+                                        confirmButtonText: 'OK'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.href = "/Login/LoginPage/";
+                                        }
+                                    });
+                                } else {
+                                    if (data.message === "Invalid security code.") {
+                                        $('#securityCodeError').text('Invalid security code.');
+                                    } else {
+                                        Swal.fire({
+                                            title: 'Failed!',
+                                            text: 'Failed inserting User, please try again.',
+                                            icon: 'error',
+                                            confirmButtonText: 'OK'
+                                        });
+                                    }
+                                }
+                            },
+                            error: function (errormessage) {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: "Error: " + errormessage.responseText,
+                                    icon: 'error',
+                                    confirmButtonText: 'OK'
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        }).fail(function () {
+            Swal.fire({
+                title: 'Error!',
+                text: "Error checking username.",
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        });
+    }
+
+</script>
+
+
+

@@ -1,0 +1,10 @@
+2024-08-08 12:14:11: Duplicate trip found at row 2: Anil, Amit Patel, DL08GH2345,29-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-08 12:14:11: Duplicate trip found at row 3: Sneha, Amit Patel, DL08GH2345,30-08-2024 00:00:00, Luxury, delhi, gurgoan, 0, 0
+2024-08-08 12:14:11: Duplicate trip found at row 4: Anil, Amit Patel, DL08GH2345,12-09-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-08 12:14:11: Duplicate trip found at row 5: Anil, Amit Patel, DL08GH2345,11-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-08 12:14:11: Duplicate trip found at row 6: Anil, Amit Patel, DL08GH2345,24-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-08 16:29:51: Duplicate trip found at row 2: Anil, Amit Patel, DL08GH2345,29-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-08 16:29:51: Invalid kilometres at row 3: 40. Only 0 is allowed.
+2024-08-08 16:29:51: Duplicate trip found at row 4: Anil, Amit Patel, DL08GH2345,12-09-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-08 16:29:51: Duplicate trip found at row 5: Anil, Amit Patel, DL08GH2345,11-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-08 16:29:51: Duplicate trip found at row 6: Anil, Amit Patel, DL08GH2345,24-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0

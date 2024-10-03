@@ -1,0 +1,252 @@
+﻿@model IEnumerable<PraneshKing_Cabs.Models.Trip>
+
+@{
+    ViewBag.Title = "Update";
+}
+<style>
+    body {
+        background-image: url(https://www.zmo.ai/wp-content/uploads/2023/09/powerpoint-slide-with-white-background-SB02298-min-scaled.jpg);
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-family: 'Arial', sans-serif;
+        color: #333;
+    }
+    .wide-input {
+        width: 100%;
+    }
+
+    .form-container {
+        max-width: 700px;
+        margin: auto;
+    }
+
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .error-message {
+        color: red;
+        font-size: 0.875em;
+    }
+</style>
+
+<div class="container mt-5 form-container">
+    <h2 class="mb-4">Complete Trip (1)</h2>
+    <form id="tripForm" class="border p-4 rounded">
+        <input id="TripID" hidden>
+        <input id="categorycost" hidden />
+
+        <!-- Customer Name -->
+        <div class="form-group col-md-12">
+            <label for="customerName" class="required">Customer Name</label>
+            <input type="text" id="customerName" name="CustomerName" class="form-control wide-input" placeholder="Enter customer name" autocomplete="off" readonly>
+            <div class="error-message" id="customerNameError"></div>
+        </div>
+
+        <!-- Driver Name and Numberplate -->
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="driverName" class="required">Driver Name</label>
+                <input type="text" id="driverName" name="DriverName" class="form-control" placeholder="Enter driver name" autocomplete="off" readonly>
+                <div class="error-message" id="driverNameError"></div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="numberplate" class="required">Numberplate</label>
+                <input type="text" id="numberplate" name="Numberplate" class="form-control" placeholder="Enter numberplate" autocomplete="off" readonly>
+                <div class="error-message" id="numberplateError"></div>
+            </div>
+        </div>
+
+        <!-- Pickup Date, Pickup Location, and Drop Location -->
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="pickupDate" class="required">Pickup Date</label>
+                <input type="text" id="pickupDate" name="PickupDate" class="form-control" placeholder="Enter pickup date" autocomplete="off" readonly>
+                <div class="error-message" id="pickupDateError"></div>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="pickupLocation" class="required">Pickup Location</label>
+                <input type="text" id="pickupLocation" name="PickupLocation" class="form-control" placeholder="Enter pickup location" autocomplete="off" readonly>
+                <div class="error-message" id="pickupLocationError"></div>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="dropLocation" class="required">Drop Location</label>
+                <input type="text" id="dropLocation" name="DropLocation" class="form-control" placeholder="Enter drop location" autocomplete="off" readonly>
+                <div class="error-message" id="dropLocationError"></div>
+            </div>
+        </div>
+
+        <!-- Kilometer and Amount -->
+        <div class="form-row" style="margin-bottom: 30px;">
+            <div class="form-group col-md-6">
+                <label for="kilometer" class="required">Kilometer</label>
+                <input type="text" id="kilometer" name="Kilometer" class="form-control" placeholder="Enter kilometers" autocomplete="off">
+                <div class="error-message" id="kilometerError"></div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="amount" class="required">Amount</label>
+                <input type="text" id="amount" name="Amount" class="form-control" placeholder="Enter amount" autocomplete="off" readonly>
+                <div class="error-message" id="amountError"></div>
+            </div>
+        </div>
+
+        <div class="form-group text-center">
+            <button type="button" class="btn btn-primary" id="updateButton" onclick="return Update()" style="width: 45%; border-radius: 20px; margin-top: 7%;">Update Trip Details</button>
+            <button type="button" class="btn btn-default" onclick="return closeForm()" id="closeButton" style="width: 45%; border-radius: 20px; margin-top: 7%;">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+
+    function closeForm() {
+        // Replace the URL with the desired redirection target
+        window.location.href = "/Trip/TripList/";
+        return false; // Prevent any default form action if this is within a form
+    }
+
+    $(document).ready(function (event) {
+        var id = localStorage['id'];
+        if (id > 0) {
+            getTripById(id);
+            var id = localStorage.getItem('id');
+            $('#CustomerId').val(id);
+            localStorage.removeItem('id');
+        }
+    });
+
+    function getTripById(id) {
+        $.ajax({
+            url: "/Trip/getTripById/",
+            type: "POST",
+            data: { TripID: id },
+            success: function (result) {
+                $('#TripID').val(result.TripID);
+                $('#customerName').val(result.CustomerName);
+                $('#driverName').val(result.DriverName);
+
+                $('#numberplate').val(result.VehicleNumber);
+                $('#customerName').val(result.CustomerName);
+                $('#categorycost').val(result.CategoryCost);
+
+               
+                var pickupdate = new Date(parseInt(result.PickupDate.substr(6)));
+                var formattedDate = pickupdate.toISOString().split('T')[0];
+                $('#pickupDate').val(formattedDate);
+
+                $('#pickupLocation').val(result.PickupLocation);
+                $('#dropLocation').val(result.DropLocation);
+                $('#kilometer').val(result.Kilometer);
+                $('#amount').val(result.Amount);
+
+            },
+            error: function (errormessage) {
+                alert("Error: " + errormessage.responseText);
+            }
+        });
+    }
+
+    $("#kilometer").on('keyup', function () {
+        var kilometer = $("#kilometer").val();
+
+        if (kilometer > 0) {
+            var cost = $('#categorycost').val();
+            $('#amount').val(kilometer * cost);
+        }
+
+    });
+
+    function Update() {
+        // Get form values
+        $('.error-message').text('');
+        // Get form values
+        var tripid = $('#TripID').val();
+        var kilometer = $('#kilometer').val();
+        var amount = $('#amount').val();
+        var isValid = true;
+
+  
+
+        if (isValid) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to update the Trip details?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, update it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "/Trip/UpdateTrip/",
+                        type: "POST",
+                        data: {
+                            TripID : tripid,
+                            Kilometer: kilometer,
+                            Amount: amount
+                        },
+                        success: function (data) {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Trip updated successfully',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = "/Trip/TripList/";
+                                }
+                            });
+                        },
+                        error: function (errormessage) {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: "Error: " + errormessage.responseText,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    });
+                }
+            });
+        } else {
+            $('html, body').animate({
+                scrollTop: 0
+            }, 500);
+        }
+    }
+
+    $(document).ready(function () {
+
+        // Validation for Amount
+        $('#kilometer').on('keyup change', function () {
+            var value = $(this).val().trim();
+            if (value === "") {
+                $('#kilometerError').text('Amount is required.');
+            } else if (value.length > 10) { // Updated to 10 characters
+                $(this).val(value.substring(0, 10)); // Truncate input to maxLength
+                $('#kilometerError').text('Amount cannot exceed 10 characters.');
+            } else if (!/^\d*\.?\d*$/.test(value)) {
+                $('#kilometerError').text('Amount must be a valid number.');
+            } else {
+                $('#kilometerError').text('');
+            }
+        }).on('keypress', function (e) {
+            var regex = /^[0-9.]*$/; // Allow only numbers and dot
+            var charCode = (e.which) ? e.which : e.keyCode;
+            var currentValue = $(this).val() + String.fromCharCode(charCode);
+
+            if (!regex.test(currentValue) || currentValue.length > 10) { // Updated to 10 characters
+                e.preventDefault();
+                return false;
+            }
+        });
+    });
+
+
+
+</script>

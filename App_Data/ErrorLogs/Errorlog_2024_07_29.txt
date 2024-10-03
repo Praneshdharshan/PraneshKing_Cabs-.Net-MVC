@@ -1,0 +1,49 @@
+2024-07-29 12:17:32: Customer not found at row 2: kasj
+2024-07-29 12:18:40: Customer not found at row 2: kasj
+2024-07-29 12:29:18: Customer not found at row 2: kasj
+2024-07-29 12:30:00: Invalid data at row 2: Kayal, Priya Singh, MH12EF9101,30-07-2024 00:00:00, SUV, , , 0, 0
+2024-07-29 12:33:59: Cab not found at row 2: MH12EF9101, priyasingh, suv
+2024-07-29 12:36:02: Invalid date format at row 3:  format should be like dd-MM-yyyy
+2024-07-29 12:36:03: Invalid date format at row 4:  format should be like dd-MM-yyyy
+2024-07-29 12:36:04: Invalid date format at row 5:  format should be like dd-MM-yyyy
+2024-07-29 12:36:04: Invalid date format at row 6:  format should be like dd-MM-yyyy
+2024-07-29 12:36:05: Invalid date format at row 7:  format should be like dd-MM-yyyy
+2024-07-29 12:36:06: Invalid date format at row 8:  format should be like dd-MM-yyyy
+2024-07-29 12:36:10: Invalid date format at row 9:  format should be like dd-MM-yyyy
+2024-07-29 12:42:21: Duplicate trip found at row 2: Kayal, priya singh, MH12EF9101,30-07-2024 00:00:00, suv, madurai, kanyakumari, 0, 0
+2024-07-29 12:42:25: Invalid date format at row 3:  format should be like dd-MM-yyyy
+2024-07-29 12:42:25: Invalid date format at row 4:  format should be like dd-MM-yyyy
+2024-07-29 12:42:25: Invalid date format at row 5:  format should be like dd-MM-yyyy
+2024-07-29 12:42:25: Invalid date format at row 6:  format should be like dd-MM-yyyy
+2024-07-29 12:42:25: Invalid date format at row 7:  format should be like dd-MM-yyyy
+2024-07-29 12:42:25: Invalid date format at row 8:  format should be like dd-MM-yyyy
+2024-07-29 12:42:25: Invalid date format at row 9:  format should be like dd-MM-yyyy
+2024-07-29 12:45:38: Duplicate trip found at row 2: Kayal, priya singh, MH12EF9101,12-08-2024 00:00:00, suv, madurai, kanyakumari, 0, 0
+2024-07-29 13:39:44: Duplicate trip found at row 2: Kayal, priya singh, MH12EF9101,12-08-2024 00:00:00, suv, madurai, kanyakumari, 0, 0
+2024-07-29 13:42:08: Duplicate trip found at row 2: Kayal, priya singh, MH12EF9101,12-08-2024 00:00:00, suv, madurai, kanyakumari, 0, 0
+2024-07-29 13:43:23: Duplicate trip found at row 2: Kayal, priya singh, MH12EF9101,12-08-2024 00:00:00, suv, madurai, kanyakumari, 0, 0
+2024-07-29 14:12:53: Duplicate trip found at row 2: Kayal, priya singh, MH12EF9101,12-08-2024 00:00:00, suv, madurai, kanyakumari, 0, 0
+2024-07-29 14:12:53: Duplicate trip found at row 3: kayal, priya singh, MH12EF9101,13-08-2024 00:00:00, suv, kerala, coimbatore, 0, 0
+2024-07-29 14:20:17: Duplicate trip found at row 2: Kayal, priya singh, MH12EF9101,12-08-2024 00:00:00, suv, madurai, kanyakumari, 0, 0
+2024-07-29 14:20:17: Duplicate trip found at row 3: kayal, priya singh, MH12EF9101,13-08-2024 00:00:00, suv, kerala, coimbatore, 0, 0
+2024-07-29 14:20:17: Duplicate trip found at row 4: Naveen, Amit Patel, DL08GH2345,30-07-2024 00:00:00, Luxury, chennai, pondicherry, 0, 0
+2024-07-29 14:20:17: Duplicate trip found at row 5: Rohan, Praneshdharshan, TN13Y6798,15-08-2024 00:00:00, Luxury, chennai, madurai, 0, 0
+2024-07-29 14:30:03: Invalid data at row 2: Kayal, priya singh, MH12EF9101,12-08-2024 00:00:00, suv, madurai, kanyakumari, 0, 0
+2024-07-29 14:30:03: Invalid data at row 3: kayal, priya singh, MH12EF9101,13-08-2024 00:00:00, suv, kerala, coimbatore, 0, 0
+2024-07-29 14:30:03: Invalid data at row 4: Naveen, Amit Patel, DL08GH2345,30-07-2024 00:00:00, Luxury, chennai, pondicherry, 0, 0
+2024-07-29 14:30:03: Invalid data at row 5: Rohan, Praneshdharshan, TN13Y6798,15-08-2024 00:00:00, Luxury, chennai, madurai, 0, 0
+2024-07-29 14:30:03: Invalid pickup date at row 6: 31-05-2024. Date should be greater than or equal to today's date and within the current year.
+2024-07-29 14:30:03: Invalid data at row 7: Anil, Amit Patel, DL08GH2345,25-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-07-29 14:36:33: Invalid pickup date at row 2: 31-05-2024. Date should be greater than or equal to today's date and within the current year.
+2024-07-29 14:36:33: Invalid data at row 3: Anil, Amit Patel, DL08GH2345,25-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-07-29 14:37:42: Invalid data at row 2: Sneha, Meena Rao, KA05KL3456,31-07-2024 00:00:00, Sedan, chennai, thiruvaniyur, 0, 0
+2024-07-29 14:37:42: Invalid data at row 3: Anil, Amit Patel, DL08GH2345,25-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-07-29 14:39:36: Invalid data at row 2: Sneha, Meena Rao, KA05KL3456,31-07-2024 00:00:00, Sedan, chennai, thiruvaniyur, 0, 0
+2024-07-29 14:39:36: Invalid data at row 3: Anil, Amit Patel, DL08GH2345,25-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-07-29 14:40:57: Invalid data at row 2: Sneha, Meena Rao, KA05KL3456,31-07-2024 00:00:00, Sedan, chennai, thiruvaniyur, 0, 0
+2024-07-29 14:40:57: Invalid data at row 3: Anil, Amit Patel, DL08GH2345,25-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-07-29 14:42:46: Invalid data at row 2: Naveen, Suresh Reddy, TN01IJ6789,30-07-2024 00:00:00, Mini, ooty, chennai, 0, 0
+2024-07-29 14:42:46: Invalid data at row 3: Anil, Amit Patel, DL08GH2345,25-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-07-29 14:44:05: Duplicate trip found at row 3: Anil, Amit Patel, DL08GH2345,25-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-07-29 15:30:08: Duplicate trip found at row 2: Naveen, Suresh Reddy, TN01IJ6789,30-07-2024 00:00:00, Mini, ooty, chennai, 0, 0
+2024-07-29 15:30:08: Duplicate trip found at row 3: Anil, Amit Patel, DL08GH2345,25-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0

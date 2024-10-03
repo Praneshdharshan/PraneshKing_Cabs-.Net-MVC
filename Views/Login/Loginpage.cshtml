@@ -1,0 +1,261 @@
+﻿
+@model IEnumerable<PraneshKing_Cabs.Models.Trip>
+
+@{ ViewBag.Title = "Login";
+}
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<style>
+   .error-message {
+    color: red;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.login-container {
+    margin-top: 50px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+}
+
+.login-image {
+    background: url('https://st4.depositphotos.com/3275449/41912/v/450/depositphotos_419123412-stock-illustration-yellow-car-smartphone-route-points.jpg') no-repeat center center;
+    background-size: cover;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 50%;
+}
+
+.login-form {
+    width: 50%;
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+form {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 400px;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+input, select, textarea {
+    max-width: 100%;
+}
+
+.form-control {
+    height: 45px;
+    font-size: 16px;
+}
+
+.btn-login {
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-login:hover {
+    background-color: #0056b3;
+}
+
+.new-user {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.new-user a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.new-user a:hover {
+    text-decoration: underline;
+}
+
+    .forgot-password {
+        display: block;
+        text-align: left;
+        font-size: 14px;
+        color: #007bff;
+        text-decoration: none;
+        margin-top: 5px;
+        transition: color 0.3s ease;
+    }
+
+        .forgot-password:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+
+@@media (max-width: 767px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .login-image {
+        border-radius: 10px 10px 0 0;
+        height: 200px;
+        width: 100%;
+    }
+
+    .login-form {
+        padding: 10px;
+        width: 100%;
+    }
+}
+
+</style>
+
+
+<div class="container">
+    <div class="row login-container">
+        <div class="login-image"></div>
+        <div class="login-form">
+            <h2>Login to Cab Service</h2>
+            <form onsubmit="return Login(event)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                    <div class="error-message" id="usernameError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password" name="password" required>
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-eye-open" id="toggle-password" style="cursor: pointer;"></i>
+                        </span>
+                    </div>
+                    <div class="error-message" id="passwordError"></div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-login" onclick="return Login(event)">Login</button>
+                <div class="error-message" id="loginError" style="padding-left:7%;"></div>
+            </form>
+            <div class="new-user">
+                <p>Register User? <a href="/Login/Registeration">Click here</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
+<script>
+        // Show/hide password functionality
+        document.getElementById('toggle-password').addEventListener('mousedown', function () {
+            var passwordField = document.getElementById('password');
+            passwordField.type = 'text';
+        });
+
+        document.getElementById('toggle-password').addEventListener('mouseup', function () {
+            var passwordField = document.getElementById('password');
+            passwordField.type = 'password';
+        });
+
+        document.getElementById('toggle-password').addEventListener('mouseout', function () {
+            var passwordField = document.getElementById('password');
+            passwordField.type = 'password';
+        });
+
+    $(document).ready(function () {
+        // Username validation
+        $('#username').on('keypress', function (event) {
+            var charCode = event.which;
+            if (!(charCode >= 65 && charCode <= 90) && // A-Z
+                !(charCode >= 97 && charCode <= 122) && // a-z
+                !(charCode === 46)) { // .
+                event.preventDefault();
+                $('#usernameError').text('Only letters and dot (.) are allowed.');
+            } else {
+                $('#usernameError').text('');
+            }
+        });
+
+        // Clear error messages on input focus
+        $('input').on('focus', function () {
+            $(this).next('.error-message').text('');
+            $('#loginError').text('');
+        });
+    });
+
+    function validateForm() {
+        var isValid = true;
+        var username = $("#username").val();
+        var password = $("#password").val();
+
+        // Username validation
+        if (username.trim() === "") {
+            $('#usernameError').text('Username is required.');
+            isValid = false;
+        }
+
+        // Password validation
+        if (password.trim() === "") {
+            $('#passwordError').text('Password is required.');
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    function Login(event) {
+        event.preventDefault();
+        $('.error-message').text('');
+
+        if (!validateForm()) {
+            return;
+        }
+
+        var username = $("#username").val();
+        var password = $("#password").val();
+
+        let data = {
+            UserName: username,
+            Password: password
+        };
+
+        $.ajax({
+            url: "/Login/Login/",
+            type: "POST",
+            data: data,
+            async: true,
+            error: function (data) {
+                $('#loginError').text('Invalid username or password. Please try again.');
+            },
+            success: function (data) {
+                if (data.RoleName == "Admin") {
+                    window.location.href = '/Home/Index/';
+                } else if (data.RoleName == "User") {
+                    window.location.href = '/Trip/Add/';
+                } else {
+                    $('#loginError').text('Invalid username or password. Please try again.');
+                }
+            }
+        });
+    }
+</script>

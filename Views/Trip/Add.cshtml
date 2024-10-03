@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PraneshKing_Cabs.Models.Trip>
+@{
+    ViewBag.Title = "Add";
+}
+<style>
+    body {
+        background-image: url(https://www.zmo.ai/wp-content/uploads/2023/09/powerpoint-slide-with-white-background-SB02298-min-scaled.jpg);
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-family: 'Arial', sans-serif;
+        color: #333;
+    }
+
+    .form-container {
+        max-width: 800px;
+        margin: auto;
+    }
+
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .error-message {
+        color: red;
+        font-size: 0.875em;
+    }
+    .banner {
+        background-attachment: local;
+        background-color: black;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: white;
+        text-shadow: 1px 1px 2px black;
+        padding: 40px;
+        border-radius: 20px;
+    }
+</style>
+
+<div class="container">
+   
+
+
+    @Html.Partial("_Addpartial")
+</div>

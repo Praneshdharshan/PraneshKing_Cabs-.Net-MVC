@@ -1,0 +1,140 @@
+2024-08-05 14:07:13: Duplicate trip found at row 2: Sneha, Amit Patel, DL08GH2345,30-08-2024 00:00:00, Luxury, delhi, gurgoan, 0, 0
+2024-08-05 14:07:13: Duplicate trip found at row 3: Anil, Amit Patel, DL08GH2345,12-09-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:23:17: Invalid kilometres at row 2: 14. Only 0 is allowed.
+2024-08-05 15:23:17: Invalid kilometres at row 3: 6. Only 0 is allowed.
+2024-08-05 15:23:17: Invalid pickup date at row 4: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:23:17: Duplicate trip found at row 5: kayal , Priya Singh, MH12EF9101,12-08-2024 00:00:00, SUV, madurai, kanyakumari, 0, 0
+2024-08-05 15:23:17: Duplicate trip found at row 6: kayal , Priya Singh, MH12EF9101,13-08-2024 00:00:00, SUV, kerala, coimbatore, 0, 0
+2024-08-05 15:23:17: Invalid pickup date at row 7: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:23:17: Duplicate trip found at row 8: Rohan, Praneshdharshan, TN13Y6798,15-08-2024 00:00:00, Luxury, chennai, madurai, 0, 0
+2024-08-05 15:23:17: Invalid pickup date at row 9: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:23:17: Invalid date format at row 10: 7-29-24 10:13 format should be like dd-MM-yyyy
+2024-08-05 15:23:17: Duplicate trip found at row 11: Naveen, Amit Patel, DL08GH2345,30-08-2024 00:00:00, Luxury, chennai, pondicherry, 0, 0
+2024-08-05 15:23:17: Duplicate trip found at row 12: Rohan, Praneshdharshan, TN13Y6798,15-09-2024 00:00:00, Luxury, chennai, madurai, 0, 0
+2024-08-05 15:23:17: Invalid pickup date at row 13: 01-08-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:23:17: Duplicate trip found at row 14: Anil, Amit Patel, DL08GH2345,26-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:23:17: Duplicate trip found at row 15: Priya, Ravi Kumar, TN01AB1234,09-09-2024 00:00:00, Mini, HSR Layout, JP Nagar, 0, 0
+2024-08-05 15:23:17: Invalid date format at row 16: 7-31-24 11:16 format should be like dd-MM-yyyy
+2024-08-05 15:23:17: Invalid date format at row 17: 8-2-24 17:44 format should be like dd-MM-yyyy
+2024-08-05 15:23:17: Duplicate trip found at row 18: Sneha, Amit Patel, DL08GH2345,21-08-2024 00:00:00, Luxury, delhi, gurgoan, 0, 0
+2024-08-05 15:23:17: Duplicate trip found at row 19: Anil, Amit Patel, DL08GH2345,22-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:23:17: Duplicate trip found at row 20: Anil, Amit Patel, DL08GH2345,29-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:23:17: Duplicate trip found at row 21: Sneha, Amit Patel, DL08GH2345,30-08-2024 00:00:00, Luxury, delhi, gurgoan, 0, 0
+2024-08-05 15:23:17: Duplicate trip found at row 22: Anil, Amit Patel, DL08GH2345,12-09-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:23:17: Duplicate trip found at row 23: Anil, Amit Patel, DL08GH2345,11-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:23:17: Duplicate trip found at row 24: Anil, Amit Patel, DL08GH2345,24-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:31:33: Invalid kilometres at row 2: 14. Only 0 is allowed.
+2024-08-05 15:31:33: Invalid kilometres at row 3: 6. Only 0 is allowed.
+2024-08-05 15:31:33: Invalid pickup date at row 4: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:31:33: Duplicate trip found at row 5: kayal , Priya Singh, MH12EF9101,12-08-2024 00:00:00, SUV, madurai, kanyakumari, 0, 0
+2024-08-05 15:31:33: Duplicate trip found at row 6: kayal , Priya Singh, MH12EF9101,13-08-2024 00:00:00, SUV, kerala, coimbatore, 0, 0
+2024-08-05 15:31:33: Invalid pickup date at row 7: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:31:33: Duplicate trip found at row 8: Rohan, Praneshdharshan, TN13Y6798,15-08-2024 00:00:00, Luxury, chennai, madurai, 0, 0
+2024-08-05 15:31:33: Invalid pickup date at row 9: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:31:33: Invalid date format at row 10: 7-29-24 10:13 format should be like dd-MM-yyyy
+2024-08-05 15:31:33: Duplicate trip found at row 11: Naveen, Amit Patel, DL08GH2345,30-08-2024 00:00:00, Luxury, chennai, pondicherry, 0, 0
+2024-08-05 15:31:33: Duplicate trip found at row 12: Rohan, Praneshdharshan, TN13Y6798,15-09-2024 00:00:00, Luxury, chennai, madurai, 0, 0
+2024-08-05 15:31:33: Invalid pickup date at row 13: 01-08-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:31:33: Duplicate trip found at row 14: Anil, Amit Patel, DL08GH2345,26-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:31:33: Duplicate trip found at row 15: Priya, Ravi Kumar, TN01AB1234,09-09-2024 00:00:00, Mini, HSR Layout, JP Nagar, 0, 0
+2024-08-05 15:31:33: Invalid date format at row 16: 7-31-24 11:16 format should be like dd-MM-yyyy
+2024-08-05 15:31:33: Invalid date format at row 17: 8-2-24 17:44 format should be like dd-MM-yyyy
+2024-08-05 15:31:33: Duplicate trip found at row 18: Sneha, Amit Patel, DL08GH2345,21-08-2024 00:00:00, Luxury, delhi, gurgoan, 0, 0
+2024-08-05 15:31:33: Duplicate trip found at row 19: Anil, Amit Patel, DL08GH2345,22-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:31:33: Duplicate trip found at row 20: Anil, Amit Patel, DL08GH2345,29-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:31:33: Duplicate trip found at row 21: Sneha, Amit Patel, DL08GH2345,30-08-2024 00:00:00, Luxury, delhi, gurgoan, 0, 0
+2024-08-05 15:31:33: Duplicate trip found at row 22: Anil, Amit Patel, DL08GH2345,12-09-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:31:33: Duplicate trip found at row 23: Anil, Amit Patel, DL08GH2345,11-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:31:33: Duplicate trip found at row 24: Anil, Amit Patel, DL08GH2345,24-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:36:39: Invalid kilometres at row 2: 14. Only 0 is allowed.
+2024-08-05 15:36:39: Invalid kilometres at row 3: 6. Only 0 is allowed.
+2024-08-05 15:36:39: Invalid pickup date at row 4: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:36:39: Duplicate trip found at row 5: kayal , Priya Singh, MH12EF9101,12-08-2024 00:00:00, SUV, madurai, kanyakumari, 0, 0
+2024-08-05 15:36:39: Duplicate trip found at row 6: kayal , Priya Singh, MH12EF9101,13-08-2024 00:00:00, SUV, kerala, coimbatore, 0, 0
+2024-08-05 15:36:39: Invalid pickup date at row 7: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:36:39: Duplicate trip found at row 8: Rohan, Praneshdharshan, TN13Y6798,15-08-2024 00:00:00, Luxury, chennai, madurai, 0, 0
+2024-08-05 15:36:39: Invalid pickup date at row 9: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:36:39: Invalid date format at row 10: 7-29-24 10:13 format should be like dd-MM-yyyy
+2024-08-05 15:36:39: Duplicate trip found at row 11: Naveen, Amit Patel, DL08GH2345,30-08-2024 00:00:00, Luxury, chennai, pondicherry, 0, 0
+2024-08-05 15:36:39: Duplicate trip found at row 12: Rohan, Praneshdharshan, TN13Y6798,15-09-2024 00:00:00, Luxury, chennai, madurai, 0, 0
+2024-08-05 15:36:39: Invalid pickup date at row 13: 01-08-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:36:39: Duplicate trip found at row 14: Anil, Amit Patel, DL08GH2345,26-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:36:39: Duplicate trip found at row 15: Priya, Ravi Kumar, TN01AB1234,09-09-2024 00:00:00, Mini, HSR Layout, JP Nagar, 0, 0
+2024-08-05 15:36:39: Invalid date format at row 16: 7-31-24 11:16 format should be like dd-MM-yyyy
+2024-08-05 15:36:39: Invalid date format at row 17: 8-2-24 17:44 format should be like dd-MM-yyyy
+2024-08-05 15:36:39: Duplicate trip found at row 18: Sneha, Amit Patel, DL08GH2345,21-08-2024 00:00:00, Luxury, delhi, gurgoan, 0, 0
+2024-08-05 15:36:39: Duplicate trip found at row 19: Anil, Amit Patel, DL08GH2345,22-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:36:39: Duplicate trip found at row 20: Anil, Amit Patel, DL08GH2345,29-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:36:39: Duplicate trip found at row 21: Sneha, Amit Patel, DL08GH2345,30-08-2024 00:00:00, Luxury, delhi, gurgoan, 0, 0
+2024-08-05 15:36:39: Duplicate trip found at row 22: Anil, Amit Patel, DL08GH2345,12-09-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:36:39: Duplicate trip found at row 23: Anil, Amit Patel, DL08GH2345,11-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:36:39: Duplicate trip found at row 24: Anil, Amit Patel, DL08GH2345,24-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:36:44: Invalid kilometres at row 2: 14. Only 0 is allowed.
+2024-08-05 15:36:44: Invalid kilometres at row 3: 6. Only 0 is allowed.
+2024-08-05 15:36:44: Invalid pickup date at row 4: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:36:44: Duplicate trip found at row 5: kayal , Priya Singh, MH12EF9101,12-08-2024 00:00:00, SUV, madurai, kanyakumari, 0, 0
+2024-08-05 15:36:44: Duplicate trip found at row 6: kayal , Priya Singh, MH12EF9101,13-08-2024 00:00:00, SUV, kerala, coimbatore, 0, 0
+2024-08-05 15:36:44: Invalid pickup date at row 7: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:36:44: Duplicate trip found at row 8: Rohan, Praneshdharshan, TN13Y6798,15-08-2024 00:00:00, Luxury, chennai, madurai, 0, 0
+2024-08-05 15:36:44: Invalid pickup date at row 9: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:36:44: Invalid date format at row 10: 7-29-24 10:13 format should be like dd-MM-yyyy
+2024-08-05 15:36:44: Duplicate trip found at row 11: Naveen, Amit Patel, DL08GH2345,30-08-2024 00:00:00, Luxury, chennai, pondicherry, 0, 0
+2024-08-05 15:36:44: Duplicate trip found at row 12: Rohan, Praneshdharshan, TN13Y6798,15-09-2024 00:00:00, Luxury, chennai, madurai, 0, 0
+2024-08-05 15:36:44: Invalid pickup date at row 13: 01-08-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:36:44: Duplicate trip found at row 14: Anil, Amit Patel, DL08GH2345,26-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:36:44: Duplicate trip found at row 15: Priya, Ravi Kumar, TN01AB1234,09-09-2024 00:00:00, Mini, HSR Layout, JP Nagar, 0, 0
+2024-08-05 15:36:44: Invalid date format at row 16: 7-31-24 11:16 format should be like dd-MM-yyyy
+2024-08-05 15:36:44: Invalid date format at row 17: 8-2-24 17:44 format should be like dd-MM-yyyy
+2024-08-05 15:36:44: Duplicate trip found at row 18: Sneha, Amit Patel, DL08GH2345,21-08-2024 00:00:00, Luxury, delhi, gurgoan, 0, 0
+2024-08-05 15:36:44: Duplicate trip found at row 19: Anil, Amit Patel, DL08GH2345,22-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:36:44: Duplicate trip found at row 20: Anil, Amit Patel, DL08GH2345,29-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:36:44: Duplicate trip found at row 21: Sneha, Amit Patel, DL08GH2345,30-08-2024 00:00:00, Luxury, delhi, gurgoan, 0, 0
+2024-08-05 15:36:44: Duplicate trip found at row 22: Anil, Amit Patel, DL08GH2345,12-09-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:36:44: Duplicate trip found at row 23: Anil, Amit Patel, DL08GH2345,11-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:36:44: Duplicate trip found at row 24: Anil, Amit Patel, DL08GH2345,24-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:37:17: Invalid kilometres at row 2: 14. Only 0 is allowed.
+2024-08-05 15:37:17: Invalid kilometres at row 3: 6. Only 0 is allowed.
+2024-08-05 15:37:17: Invalid pickup date at row 4: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:37:17: Duplicate trip found at row 5: kayal , Priya Singh, MH12EF9101,12-08-2024 00:00:00, SUV, madurai, kanyakumari, 0, 0
+2024-08-05 15:37:17: Duplicate trip found at row 6: kayal , Priya Singh, MH12EF9101,13-08-2024 00:00:00, SUV, kerala, coimbatore, 0, 0
+2024-08-05 15:37:17: Invalid pickup date at row 7: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:37:17: Duplicate trip found at row 8: Rohan, Praneshdharshan, TN13Y6798,15-08-2024 00:00:00, Luxury, chennai, madurai, 0, 0
+2024-08-05 15:37:17: Invalid pickup date at row 9: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:37:17: Invalid date format at row 10: 7-29-24 10:13 format should be like dd-MM-yyyy
+2024-08-05 15:37:17: Duplicate trip found at row 11: Naveen, Amit Patel, DL08GH2345,30-08-2024 00:00:00, Luxury, chennai, pondicherry, 0, 0
+2024-08-05 15:37:17: Duplicate trip found at row 12: Rohan, Praneshdharshan, TN13Y6798,15-09-2024 00:00:00, Luxury, chennai, madurai, 0, 0
+2024-08-05 15:37:17: Invalid pickup date at row 13: 01-08-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:37:17: Duplicate trip found at row 14: Anil, Amit Patel, DL08GH2345,26-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:37:17: Duplicate trip found at row 15: Priya, Ravi Kumar, TN01AB1234,09-09-2024 00:00:00, Mini, HSR Layout, JP Nagar, 0, 0
+2024-08-05 15:37:17: Invalid date format at row 16: 7-31-24 11:16 format should be like dd-MM-yyyy
+2024-08-05 15:37:17: Invalid date format at row 17: 8-2-24 17:44 format should be like dd-MM-yyyy
+2024-08-05 15:37:17: Duplicate trip found at row 18: Sneha, Amit Patel, DL08GH2345,21-08-2024 00:00:00, Luxury, delhi, gurgoan, 0, 0
+2024-08-05 15:37:17: Duplicate trip found at row 19: Anil, Amit Patel, DL08GH2345,22-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:37:17: Duplicate trip found at row 20: Anil, Amit Patel, DL08GH2345,29-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:37:17: Duplicate trip found at row 21: Sneha, Amit Patel, DL08GH2345,30-08-2024 00:00:00, Luxury, delhi, gurgoan, 0, 0
+2024-08-05 15:37:17: Duplicate trip found at row 22: Anil, Amit Patel, DL08GH2345,12-09-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:37:17: Duplicate trip found at row 23: Anil, Amit Patel, DL08GH2345,11-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:37:17: Duplicate trip found at row 24: Anil, Amit Patel, DL08GH2345,24-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:40:06: Invalid kilometres at row 2: 14. Only 0 is allowed.
+2024-08-05 15:40:06: Invalid kilometres at row 3: 6. Only 0 is allowed.
+2024-08-05 15:40:06: Invalid pickup date at row 4: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:40:06: Duplicate trip found at row 5: kayal , Priya Singh, MH12EF9101,12-08-2024 00:00:00, SUV, madurai, kanyakumari, 0, 0
+2024-08-05 15:40:06: Duplicate trip found at row 6: kayal , Priya Singh, MH12EF9101,13-08-2024 00:00:00, SUV, kerala, coimbatore, 0, 0
+2024-08-05 15:40:06: Invalid pickup date at row 7: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:40:06: Duplicate trip found at row 8: Rohan, Praneshdharshan, TN13Y6798,15-08-2024 00:00:00, Luxury, chennai, madurai, 0, 0
+2024-08-05 15:40:06: Invalid pickup date at row 9: 30-07-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:40:06: Invalid date format at row 10: 7-29-24 10:13 format should be like dd-MM-yyyy
+2024-08-05 15:40:06: Duplicate trip found at row 11: Naveen, Amit Patel, DL08GH2345,30-08-2024 00:00:00, Luxury, chennai, pondicherry, 0, 0
+2024-08-05 15:40:06: Duplicate trip found at row 12: Rohan, Praneshdharshan, TN13Y6798,15-09-2024 00:00:00, Luxury, chennai, madurai, 0, 0
+2024-08-05 15:40:06: Invalid pickup date at row 13: 01-08-2024. Date should be greater than or equal to today's date and within the current year.
+2024-08-05 15:40:06: Duplicate trip found at row 14: Anil, Amit Patel, DL08GH2345,26-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:40:06: Duplicate trip found at row 15: Priya, Ravi Kumar, TN01AB1234,09-09-2024 00:00:00, Mini, HSR Layout, JP Nagar, 0, 0
+2024-08-05 15:40:06: Invalid date format at row 16: 7-31-24 11:16 format should be like dd-MM-yyyy
+2024-08-05 15:40:06: Invalid date format at row 17: 8-2-24 17:44 format should be like dd-MM-yyyy
+2024-08-05 15:40:06: Duplicate trip found at row 18: Sneha, Amit Patel, DL08GH2345,21-08-2024 00:00:00, Luxury, delhi, gurgoan, 0, 0
+2024-08-05 15:40:06: Duplicate trip found at row 19: Anil, Amit Patel, DL08GH2345,22-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:40:06: Duplicate trip found at row 20: Anil, Amit Patel, DL08GH2345,29-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:40:06: Duplicate trip found at row 21: Sneha, Amit Patel, DL08GH2345,30-08-2024 00:00:00, Luxury, delhi, gurgoan, 0, 0
+2024-08-05 15:40:06: Duplicate trip found at row 22: Anil, Amit Patel, DL08GH2345,12-09-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:40:06: Duplicate trip found at row 23: Anil, Amit Patel, DL08GH2345,11-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0
+2024-08-05 15:40:06: Duplicate trip found at row 24: Anil, Amit Patel, DL08GH2345,24-08-2024 00:00:00, Luxury, Rajajinagar, Koramangala, 0, 0

@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+    .profile-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .navbar-right .dropdown-menu {
+        border-color: #343a40;
+        background-color: #f8f9fa;
+        width: 300px;
+        padding: 20px;
+        left: auto;
+        right: 0;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        border-radius: 8px;
+    }
+
+
+    .dropdown-header {
+        display:flex;
+        background-color: #343a40;
+        color: white;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .dropdown-header .profile-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .dropdown-header .profile-details {
+        margin-left: 15px;
+    }
+
+    .dropdown-header .profile-details .username {
+        font-size: 18px;
+        font-weight: bold;
+        text-transform: capitalize; /* Capitalizes the first letter */
+        color: white;
+    }
+
+    .dropdown-header .profile-details .role {
+        font-size: 14px;
+        color: #ccc;
+    }
+
+
+    .dropdown-menu a {
+        display: block;
+        padding: 10px 0;
+        color: #343a40;
+        font-size: 16px;
+    }
+
+    .dropdown-menu a:hover {
+        background-color: #e9ecef;
+        text-decoration: none;
+    }
+
+    .dropdown-menu .divider {
+        margin: 10px 0;
+    }
+
+    .navbar-right .dropdown-toggle {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        color: #343a40;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+
+    .navbar-right .dropdown-toggle:hover,
+    .navbar-right .dropdown-toggle:focus {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .navbar-right .caret {
+        margin-left: 5px;
+    }
+</style>
+
+</head>
+
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (Session["RoleName"] != null && Session["RoleName"].ToString() == "Admin")
+                    {
+                        @Html.ActionLink("DashBoard", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                        <li>@Html.ActionLink("Trip Details", "TripList", "Trip")</li>
+                        <li>@Html.ActionLink("Customer Details", "CustomerList", "Customer")</li>
+                        <li>@Html.ActionLink("Car Category", "CategoryList", "Category")</li>
+                        <li>@Html.ActionLink("Cab List", "CabList", "Cab")</li>
+                    }
+                    @if (Session["RoleName"] != null && Session["RoleName"].ToString() == "User")
+                    {
+                        @Html.ActionLink("Pranesh Cabs", "Add", "Trip", new { area = "" }, new { @class = "navbar-brand" })
+                        <li>@Html.ActionLink("Add Trip", "Add", "Trip")</li>
+
+                    }
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["UserName"] != null)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="profile-image img-circle" alt="Profile Image">
+                                <span id="username-display">@Session["UserName"]</span> <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-header">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="profile-image img-circle" alt="Profile Image">
+                                    <div class="profile-details">
+                                        <div class="username">@Session["UserName"]</div>
+                                        <div class="role">@Session["RoleName"]</div>
+                                    </div>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>@Html.ActionLink("LogOut", "LogOut", "Login")</li>
+                            </ul>
+                        </li>
+                     }
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Pranesh Cabs Applications</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Capitalize the first letter of the username
+            function capitalizeFirstLetter(str) {
+                return str.charAt(0).toUpperCase() + str.slice(1);
+            }
+
+            var usernameDisplay = $('#username-display');
+            var username = usernameDisplay.text().trim();
+
+            if (username) {
+                usernameDisplay.text(capitalizeFirstLetter(username));
+            }
+        });
+    </script>
+</body>
+</html>

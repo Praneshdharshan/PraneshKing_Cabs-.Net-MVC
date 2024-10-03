@@ -1,0 +1,455 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pranesh Cabs - Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url(https://www.zmo.ai/wp-content/uploads/2023/09/powerpoint-slide-with-white-background-SB02298-min-scaled.jpg);
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+.sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100%;
+        background-color: #343a40;
+        color: #fff;
+        padding-top: 60px; /* Increased padding to push content down */
+        z-index: 1000;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Added box shadow */
+        transition: background-color 0.3s ease; /* Smooth transition for background color */
+    }
+
+    .sidebar .nav-item {
+        position: relative; /* Needed for positioning of the additional info */
+    }
+
+    .sidebar .nav-link {
+        color: #fff;
+        display: block;
+        padding: 15px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    }
+
+    .sidebar .nav-link:hover {
+        background-color: #007bff;
+    }
+
+    .sidebar .nav-link i {
+        margin-right: 10px; /* Space between icon and text */
+    }
+
+    .sidebar-info {
+        display: none;
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px;
+        position: absolute;
+        left: 100%;
+        top: 0;
+        width: 200px; /* Adjust as needed */
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 2000;
+        font-size: 14px;
+    }
+
+    .sidebar-item:hover .sidebar-info {
+        display: block;
+    }
+
+    /* Media Queries for Responsive Design */
+    @@media (max-width: 767px) {
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+            padding-top: 20px;
+            box-shadow: none;
+        }
+        .sidebar .nav-link {
+            font-size: 14px;
+        }
+        .sidebar-info {
+            width: auto;
+            left: 0;
+            top: 100%;
+            box-shadow: none;
+        }
+    }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+ .welcome-message {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-message h1 {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.welcome-message p {
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.5;
+}
+
+
+@@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+        .dashboard-container {
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card h5 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .card p {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .card i {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        .chart-container, .performance-metrics-container {
+            margin-top: 30px; /* Add margin to the top of the sections */
+        }
+
+        .chart-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+            .chart-card:hover {
+                transform: scale(1.02);
+            }
+
+            .chart-card h5 {
+                font-size: 22px;
+                margin-bottom: 15px;
+                font-weight: 600;
+                text-align: left;
+            }
+
+            .chart-card canvas {
+                height: 300px;
+            }
+
+        .feedback-container {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+            .feedback-container h2 {
+                margin-bottom: 20px;
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <ul class="nav flex-column">
+            <li class="nav-item sidebar-item">
+                <a class="nav-link" href="/Home/Index">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <div class="sidebar-info">Overview of your dashboard with key metrics and insights.</div>
+            </li>
+            <li class="nav-item sidebar-item">
+                <a class="nav-link" href="/Trip/TripList/">
+                    <i class="fas fa-route"></i> Manage Trips
+                </a>
+                <div class="sidebar-info">Plan and track your journeys with our efficient trip management system.</div>
+            </li>
+            <li class="nav-item sidebar-item">
+                <a class="nav-link" href="/Cab/CabList/">
+                    <i class="fas fa-taxi"></i> Manage Cabs
+                </a>
+                <div class="sidebar-info">Maintain a well-documented fleet with detailed vehicle and driver information.</div>
+            </li>
+            <li class="nav-item sidebar-item">
+                <a class="nav-link" href="/Category/CategoryList/">
+                    <i class="fas fa-list"></i> Manage Categories
+                </a>
+                <div class="sidebar-info">Define and manage cab categories such as Mini, Sedan, SUV, and Luxury with associated costs.</div>
+            </li>
+            <li class="nav-item sidebar-item">
+                <a class="nav-link" href="/Customer/CustomerList/">
+                    <i class="fas fa-users"></i> Manage Customers
+                </a>
+                <div class="sidebar-info">Maintain comprehensive records of customer details, ensuring excellent service delivery.</div>
+            </li>
+            <li class="nav-item sidebar-item">
+                <a class="nav-link" href="/Support/Support">
+                    <i class="fas fa-headset"></i> Contact Support
+                </a>
+                <div class="sidebar-info">We're here to help you 24/7. Reach out to our support team for any assistance you need.</div>
+            </li>
+        </ul>
+    </div>
+
+
+
+
+    <div class="main-content">
+        <div class="welcome-message">
+            <h1>Welcome Back, @ViewBag.Greeting</h1>
+            <p>Explore our features and get started with our services today.</p>
+        </div>
+
+        <div class="dashboard-container row">
+            <div class="col-md-4">
+                <div class="card">
+                    <i class="glyphicon glyphicon-road"></i>
+                    <h5>Total Number of Trips</h5>
+                    <p>@ViewBag.TotalTrip</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <i class="glyphicon glyphicon-ok-circle" style="color:green;"></i>
+                    <h5>Number of Successful Trips</h5>
+                    <p>@ViewBag.SuccessTrip</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <i class="glyphicon glyphicon-time" style="color:red;"></i>
+                    <h5>Number of Trips Yet to Complete</h5>
+                    <p>@ViewBag.UnSuccessTrip</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-container row">
+            <div class="col-md-6">
+                <div class="card chart-card">
+                    <h5>Trips Overview</h5>
+                    <canvas id="tripsChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card chart-card">
+                    <h5>Trip Duration Analysis</h5>
+                    <canvas id="durationChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="performance-metrics-container row">
+            <div class="col-md-6">
+                <div class="card chart-card">
+                    <h5>Trip Success Rate</h5>
+                    <canvas id="successRateChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card chart-card">
+                    <h5>Revenue Overview</h5>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctxDuration = document.getElementById('durationChart').getContext('2d');
+        var durationChart = new Chart(ctxDuration, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Average Trip Duration (minutes)',
+                    data: [30, 45, 35, 50, 40, 55],
+                    borderColor: '#007bff',
+                    backgroundColor: 'rgba(0, 123, 255, 0.2)'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var ctxRevenue = document.getElementById('revenueChart').getContext('2d');
+        var revenueChart = new Chart(ctxRevenue, {
+            type: 'pie',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{
+                    label: 'Monthly Revenue',
+                    data: [5000, 7000, 6000, 8000, 7500],
+                    backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545', '#17a2b8'],
+                    borderColor: '#fff', // Adding border color for better separation
+                    borderWidth: 2 // Width of the border
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            boxWidth: 10,
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += `$${context.raw.toLocaleString()}`;
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        var ctxTrips = document.getElementById('tripsChart').getContext('2d');
+        var tripsChart = new Chart(ctxTrips, {
+            type: 'bar',
+            data: {
+                labels: ['Total Trips', 'Successful Trips', 'Incomplete Trips'],
+                datasets: [{
+                    label: 'Trips',
+                    data: [@ViewBag.TotalTrip, @ViewBag.SuccessTrip, @ViewBag.UnSuccessTrip],
+                    backgroundColor: ['#007bff', '#28a745', '#dc3545']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var ctxSuccessRate = document.getElementById('successRateChart').getContext('2d');
+        var successRateChart = new Chart(ctxSuccessRate, {
+            type: 'doughnut',
+            data: {
+                labels: ['Successful Trips', 'Incomplete Trips'],
+                datasets: [{
+                    data: [@ViewBag.SuccessTrip, @ViewBag.UnSuccessTrip],
+                    backgroundColor: ['#28a745', '#dc3545'],
+                    borderColor: ['#28a745', '#dc3545'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
